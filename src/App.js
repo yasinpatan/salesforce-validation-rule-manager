@@ -37,25 +37,46 @@ function App() {
     window.location.href = authUrl;
   };
 
-  const getValidationRules = async () => {
+  const getValidationRules = () => {
 
     const sampleRules = [
 
       {
         Id: 1,
         DeveloperName: "Website_Required",
-        ErrorDisplayField: "Website"
+        ErrorDisplayField: "Website",
+        Active: true
       },
 
       {
         Id: 2,
         DeveloperName: "Email_Validation",
-        ErrorDisplayField: "Email"
+        ErrorDisplayField: "Email",
+        Active: false
       }
 
     ];
 
     setRules(sampleRules);
+  };
+
+  const toggleRuleStatus = (id) => {
+
+    const updatedRules = rules.map((rule) => {
+
+      if (rule.Id === id) {
+
+        return {
+          ...rule,
+          Active: !rule.Active
+        };
+
+      }
+
+      return rule;
+    });
+
+    setRules(updatedRules);
   };
 
   return (
@@ -84,8 +105,9 @@ function App() {
                     key={rule.Id}
                     style={{
                       border: "1px solid black",
-                      padding: "10px",
-                      marginBottom: "10px"
+                      padding: "15px",
+                      marginBottom: "15px",
+                      borderRadius: "10px"
                     }}
                   >
 
@@ -94,6 +116,21 @@ function App() {
                     <p>
                       Error Field: {rule.ErrorDisplayField}
                     </p>
+
+                    <p>
+                      Status:
+                      {
+                        rule.Active
+                          ? " Active ✅"
+                          : " Inactive ❌"
+                      }
+                    </p>
+
+                    <button
+                      onClick={() => toggleRuleStatus(rule.Id)}
+                    >
+                      Toggle Status
+                    </button>
 
                   </div>
 
