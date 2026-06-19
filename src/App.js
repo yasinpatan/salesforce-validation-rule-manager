@@ -29,11 +29,10 @@ function App() {
 
     const clientId = "3MVG9VMBZCsTL9hkkoQDify0Pn_mk6NkgmNOUf8iXCg0t0G9hJjd3aGJo16mJJTipJ4fUoKrE5aV734ZCRx5c";
 
-    const redirectUri = "http://localhost:3001";
+    const redirectUri = "https://elegant-queijadas-11f4ce.netlify.app";
 
     const authUrl =
-      `https://orgfarm-412815bab7-dev-ed.develop.my.salesforce.com/services/oauth2/authorize?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}`;
-
+  `https://login.salesforce.com/services/oauth2/authorize?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}`;
     window.location.href = authUrl;
   };
 
